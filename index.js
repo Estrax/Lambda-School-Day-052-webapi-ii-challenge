@@ -1,5 +1,5 @@
 const express = require('express');
-const middleware = require('./src/middleware');
+const initMiddleware = require('./src/middleware');
 
 const app = express();
 initMiddleware(app);
