@@ -20,19 +20,19 @@ import { API_URL } from '../constants/config';
 import { history } from '../';
 
 export function fetchPosts(){
-    return dispatch => {
-        dispatch(requestFetch())
-        axios
-            .get(API_URL+`/posts/`)
-            .then(res => {
-                if(res.status===200){
-                    dispatch(receiveFetch(res.data));
-                }else{
-                    dispatch(errorFetch(res.data.error));
-                    return Promise.reject(res.data);
-                }
-            })
-            .catch(err => console.log(err));
+    return async dispatch => {
+        try {
+            dispatch(requestFetch())
+            const posts = await axios.get(API_URL+`/posts/`);
+            if(posts.status === 200){
+                return dispatch(receiveFetch(posts.data));
+            }else{
+                dispatch(errorFetch(posts.data.error));
+                return Promise.reject(posts.data);
+            }
+        } catch(e) {
+            console.log(e);
+        }
     }
 
 
@@ -58,19 +58,19 @@ export function fetchPosts(){
 }
 
 export function fetchPost(id){
-    return dispatch => {
-        dispatch(requestFetch(id))
-        return axios
-            .get(API_URL+`/posts/${id}`)
-            .then(res => {
-                if(res.status===200){
-                    dispatch(receiveFetch(res.data));
-                }else{
-                    dispatch(errorFetch(res.data.error));
-                    return Promise.reject(res.data);
-                }
-            })
-            .catch(err => console.log(err));
+    return async dispatch => {
+        try {
+            dispatch(requestFetch(id));
+            const post = await axios.get(API_URL+`/posts/${id}`);
+            if(post.status === 200){
+                return dispatch(receiveFetch(post.data));
+            }else{
+                dispatch(errorFetch(post.data.error));
+                return Promise.reject(post.data);
+            }
+        } catch(e) {
+            console.log(e);
+        }
     }
 
 
@@ -97,20 +97,20 @@ export function fetchPost(id){
 }
 
 export function addPost(post){
-    return dispatch => {
-        dispatch(requestAdd(post))
-        axios
-            .post(API_URL+`/posts/`, post)
-            .then(res => {
-                if(res.status===201){
-                    dispatch(receiveAdd(res.data));
-                    history.push(`/${res.data.id}`);
-                }else{
-                    dispatch(errorAdd(res.data.error));
-                    return Promise.reject(res.data);
-                }
-            })
-            .catch(err => console.log(err));
+    return async dispatch => {
+        try {
+            dispatch(requestAdd(post));
+            const newPost = axios.post(API_URL+`/posts/`, post);
+            if(newPost.status === 201){
+                dispatch(receiveAdd(newPost.data));
+                return history.push(`/${newPost.data.id}`);
+            }else{
+                dispatch(errorAdd(newPost.data.error));
+                return Promise.reject(newPost.data);
+            }
+        } catch(e) {
+            console.log(e);
+        }
     }
 
 
@@ -138,20 +138,20 @@ export function addPost(post){
 
 
 export function updatePost(post){
-    return dispatch => {
-        dispatch(requestUpdate(post))
-        axios
-            .put(API_URL+`/posts/${post.id}`, post)
-            .then(res => {
-                if(res.status===200){
-                    dispatch(receiveUpdate(res.data));
-                    history.push(`/${post.id}`);
-                }else{
-                    dispatch(errorUpdate(res.data.error));
-                    return Promise.reject(res.data);
-                }
-            })
-            .catch(err => console.log(err));
+    return async dispatch => {
+        try {
+            dispatch(requestUpdate(post));
+            const updatedPost = axios.put(API_URL+`/posts/${post.id}`, post);
+            if(updatedPost.status === 200){
+                dispatch(receiveUpdate(updatedPost.data));
+                return history.push(`/${post.id}`);
+            }else{
+                dispatch(errorUpdate(updatedPost.data.error));
+                return Promise.reject(updatedPost.data);
+            }
+        } catch(e) {
+            console.log(e);
+        }
     }
 
 
@@ -178,20 +178,20 @@ export function updatePost(post){
 }
 
 export function deletePost(id){
-    return dispatch => {
-        dispatch(requestDelete(id))
-        axios
-            .delete(API_URL+`/posts/${id}`)
-            .then(res => {
-                if(res.status===200){
-                    dispatch(receiveDelete(id));;
-                    history.push('/');
-                }else{
-                    dispatch(errorDelete(res.data.error));
-                    return Promise.reject(res.data);
-                }
-            })
-            .catch(err => console.log(err));
+    return async dispatch => {
+        try {
+            dispatch(requestDelete(id));
+            const deletedPost = axios.delete(API_URL+`/posts/${id}`);
+            if(deletedPost.status === 200){
+                dispatch(receiveDelete(id));;
+                return history.push('/');
+            }else{
+                dispatch(errorDelete(deletedPost.data.error));
+                return Promise.reject(deletedPost.data);
+            }
+        } catch(e) {
+            console.log(e);
+        }
     }
 
 
