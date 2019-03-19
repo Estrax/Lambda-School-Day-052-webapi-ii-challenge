@@ -1,12 +1,9 @@
 import React from 'react';
 import Post from '../components/Post'
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
-const StyledLink = styled(Link)`
-    text-decoration: none !important;
-`;
+import {
+    StyledLink
+} from '../styles';
 
 
 const Posts = (props) => {

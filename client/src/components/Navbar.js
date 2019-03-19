@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import {
     Collapse,
-    Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
 } from 'reactstrap';
 
-import styled from 'styled-components';
-
-const NavbarBrandStyled = styled(NavbarBrand)`
-    font-size: 24px;
-    color: #fff !important;
-`;
-
-const NavbarStyled = styled(Navbar)`
-    margin-bottom: 5rem;
-    border-bottom: 1px solid #000;
-    background: #000;
-`;
-
-const LinkStyled = styled(Link)`
-    color: white !important;
-`;
+import {
+    NavbarBrandStyled,
+    NavbarStyled,
+    LinkStyled
+} from '../styles';
 
 class NavbarComponent extends Component {
     constructor(props) {

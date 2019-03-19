@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import Posts from '../containers/Posts';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
-const Title = styled.h1`
-    text-align: center;
-`;
+import {
+    Title
+} from '../styles';
 
 class PostsPage extends Component {
     constructor(props) {

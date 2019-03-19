@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPost, updatePost, fetchPost } from '../actions';
-import styled from 'styled-components';
-import { SubmitBtn } from '../styles';
+import {
+    SubmitBtn,
+    Title,
+    FormComponent
+} from '../styles';
 import PropTypes from 'prop-types';
-
-const FormComponent = styled.form`
-    width: 18rem;
-    margin: 0 auto;
-`;
-
-const Title = styled.h1`
-    text-align: center;
-    background-color: #000;
-    color: white;
-    margin-bottom: 0;
-    padding: 10px;
-`;
 
 class PostForm extends Component {
     constructor(props) {
