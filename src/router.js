@@ -41,16 +41,16 @@ router.route('/:id')
             if(!title || !contents) return res.status(400).json({ errorMessage: "Please provide title and contents for the post." });
             const postUpdated = await db.update(req.params.id, { title, contents })
             if(postUpdated === 0) return res.status(404).json({ message: "The post with the specified ID does not exist." });
-            return res.status(200).json(postUpdated);
+            return res.status(200).json(postUpdated[0]);
         } catch(e) {
             return res.status(500).json({ error: "The post information could not be modified." });
         }
     })
     .delete(async (req, res) => {
         try {
-            const deletedUser = await db.remove(req.params.id);
-            if(deletedUser === 0) return res.status(404).json({ message: "The post with the specified ID does not exist." });
-            return res.status(200).json({...post, removed: true});
+            const deletedPost = await db.remove(req.params.id);
+            if(deletedPost === 0) return res.status(404).json({ message: "The post with the specified ID does not exist." });
+            return res.status(200).json({...deletedPost[0], removed: true});
         } catch(e) {
             return res.status(500).json({ error: "The post could not be removed" })
         }
