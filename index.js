@@ -1,6 +1,8 @@
 const express = require('express');
+const middleware = require('./src/middleware');
 
 const app = express();
+initMiddleware(app);
 
 const PORT = process.env.PORT || 5000;
 
