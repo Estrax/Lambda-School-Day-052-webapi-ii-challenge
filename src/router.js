@@ -18,8 +18,6 @@ router.route('/')
             const newPost = await db.insert({
                 title,
                 contents,
-                created_at: new Date().toString(),
-                updated_at: new Date().toString()
             })
             return res.status(201).json(newPost);
         } catch(e) {
@@ -41,7 +39,7 @@ router.route('/:id')
         try {
             const {title, contents} = req.body;
             if(!title || !contents) return res.status(400).json({ errorMessage: "Please provide title and contents for the post." });
-            const postUpdated = await db.update(req.params.id, { title, contents, updated_at: new Date().toString() })
+            const postUpdated = await db.update(req.params.id, { title, contents })
             if(postUpdated === 0) return res.status(404).json({ message: "The post with the specified ID does not exist." });
             return res.status(200).json(postUpdated);
         } catch(e) {
