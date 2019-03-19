@@ -32,7 +32,7 @@ class PostForm extends Component {
     }
     
     componentDidMount() {
-        if(!this.props.registerForm){
+        if(!this.props.addForm){
             this.props.fetchPost(this.props.postID).then(_ => {
                 this.setState({
                     title: this.props.title,
@@ -69,10 +69,10 @@ class PostForm extends Component {
     render() {
         return (
             <>
-                <FormComponent onSubmit={this.props.registerForm ? this.addPost : this.updatePost} className="card">
+                <FormComponent onSubmit={this.props.addForm ? this.addPost : this.updatePost} className="card">
                     <Title>
-                        {this.props.registerForm && "Add post"}
-                        {!this.props.registerForm && "Update post"}
+                        {this.props.addForm && "Add post"}
+                        {!this.props.addForm && "Update post"}
                     </Title>
                     
                     <input
@@ -105,7 +105,7 @@ class PostForm extends Component {
 PostForm.propTypes = {
     title: PropTypes.string.isRequired,
     contents: PropTypes.string.isRequired,
-    registerForm: PropTypes.bool.isRequired,
+    addForm: PropTypes.bool.isRequired,
     addPost: PropTypes.func.isRequired,
     updatePost: PropTypes.func.isRequired,
     fetchPost: PropTypes.func.isRequired
