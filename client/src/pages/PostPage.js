@@ -50,7 +50,7 @@ PostPage.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        post: state.posts.post ? state.posts.post : {id: -1, name: '', bio: ''},
+        post: state.posts.post ? state.posts.post : {id: -1, title: '', contents: ''},
         posts: state.posts.posts ? state.posts.posts : []
     }
 }

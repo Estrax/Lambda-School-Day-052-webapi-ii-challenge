@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { fetchPost } from '../actions';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -67,7 +65,6 @@ const Post = (props) => {
 
 
 Post.propTypes = {
-    fetchPost: PropTypes.func.isRequired,
     editPost: PropTypes.func,
     deletePost: PropTypes.func,
     title: PropTypes.string.isRequired,
@@ -75,14 +72,4 @@ Post.propTypes = {
     singlePost: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = state => {
-    return {
-        
-    }
-}
-
-const mapDispatchToProps = {
-    fetchPost
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default Post;

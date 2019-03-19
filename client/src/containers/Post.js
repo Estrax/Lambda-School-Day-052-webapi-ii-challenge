@@ -21,8 +21,8 @@ const PostContainer = (props) => {
 PostContainer.propTypes = {
     post: PropTypes.shape({
         id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        bio: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired,
+        contents: PropTypes.string.isRequired
     }).isRequired,
     editPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired
